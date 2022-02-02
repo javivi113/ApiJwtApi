@@ -81,9 +81,10 @@ namespace WebApi
 
             // global cors policy
             app.UseCors(x => x
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
+                           .AllowAnyMethod()
+                           .AllowAnyHeader()
+                           .SetIsOriginAllowed(origin => true) // allow any origin
+                           .AllowCredentials());
 
             // custom jwt auth middleware
             app.UseMiddleware<JwtMiddleware>();
